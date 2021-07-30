@@ -1,54 +1,69 @@
 import './App.css';
+import React from 'react';
+import { AuthProvider } from './context/AuthContext';
+import { UserProvider } from './context/UserContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 //PAGES
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Dashboard from './pages/dashboard';
+import EditProfile from './pages/editprofile';
 import LeagueStats from './pages/leaguestats';
 import FilipResume from './pages/filipresume';
+import LeaguePreview from './pages/leaguepreview';
 //COMPONENTS
 import Navbar from './components/Navbar';
-import ResumeNavbar from './components/resumeComponents/Navbar/ResumeNavbar';
-import AuthRoute from './util/AuthRoute';
-let authenticated;
-const token = localStorage.FBidToken;
-if(token){
-  const decodedToken = jwtDecode(token);
-  if(decodedToken.exp * 1000 < Date.now()){
-    window.location.href = '/login';
-    authenticated = false;
-  }else {
-    authenticated = true;
-  }
-}else{
-  authenticated = false;
-}
-const AppNavbarRoute = ({exact, path, component:Component, ...rest}) => {
+import AuthRoute from './customRoutes/AuthRoute';
+import ResumeAuthRoute from './customRoutes/ResumeAuthRoute';
+
+
+const AppNavbarRoute = ({ exact, path, component: Component, ...rest }) => {
   return <Route exact={exact} path={path} {...rest} render={(routeProps) => {
-    return <><Navbar {...routeProps}/><Component {...routeProps}/></>
+    return <><Navbar {...routeProps} /><Component {...routeProps} /></>
   }}
   />
 }
-const ResumeNavbarRoute = ({exact, path, component:Component, ...rest}) => {
-  return <Route exact={exact} path={path} {...rest} render={(routeProps) => {
-    return <><ResumeNavbar {...routeProps}/><Component {...routeProps}/></>
-  }}
-  />
-}
+// PROJEKTE, SKILLS, WORK EXPERIENCE UPDEJTOVATI 
+// LIKE, ULIKE CV DODATI
+// DASHBOARD DODATI OSNOVNE FUNKCIJE
+
 const App = () => {
   return (
-      <BrowserRouter>     
-        <Switch>
-          <AppNavbarRoute exact path="/" component={Home} />
-          <AuthRoute path="/login" component={Login} authenticated={authenticated}/>
-          <AuthRoute path="/signup" component={Signup} authenticated={authenticated}/>
-          <AppNavbarRoute path="/dashboard" component={Dashboard} />
-          <ResumeNavbarRoute path={["/filipresume", "/skills", "/projects"]} component={FilipResume} />
-          <AppNavbarRoute path="/leaguestats" component={LeagueStats} />
-        </Switch>
-      </BrowserRouter> 
+    <BrowserRouter>
+      <Switch>
+        <AuthProvider>
+          <UserProvider>
+            <AppNavbarRoute exact path="/" component={Home} />
+            <AppNavbarRoute path="/login" component={Login} />
+            <AppNavbarRoute path="/signup" component={Signup} />
+            <AuthRoute
+              path="/dashboard"
+              component={Dashboard}
+            />
+            <AuthRoute
+              path="/editprofile"
+              component={EditProfile}
+            />
+            <ResumeAuthRoute
+              path={[
+                "/filipresume",
+                "/skills",
+                "/projects",
+                "/education",
+                "/courses",
+                "/workexperience",
+                "/personalskills",
+                "/other"
+              ]}
+              component={FilipResume}
+            />
+            <AppNavbarRoute path="/leaguestats" component={LeagueStats} />
+            <AppNavbarRoute path="/leagues/:leagueID" component={LeaguePreview} />
+          </UserProvider>
+        </AuthProvider>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

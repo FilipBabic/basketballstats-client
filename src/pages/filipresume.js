@@ -1,105 +1,151 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid,
-        Typography,
-        ThemeProvider,
-        Divider
-    } from '@material-ui/core';
+import {
+    Grid,
+    Typography,
+    ThemeProvider,
+    Divider
+} from '@material-ui/core';
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import noPhoto from '../images/no_photo.jpg';
-import Navbar from '../components/Navbar';
 import ContactInfo from '../components/resumeComponents/ContactInfo/ContactInfo';
 import Skills from '../components/resumeComponents/ProfessionalSkills/Skills';
 import Projects from '../components/resumeComponents/Projects/Projects';
 import Education from '../components/resumeComponents/Education/Education';
 import Courses from '../components/resumeComponents/Courses/Courses';
-let theme = createMuiTheme();
+import Jobs from '../components/resumeComponents/WorkExperience/Jobs';
+import PersonalSkills from '../components/resumeComponents/PersonalSkills/PersonalSkills';
+import Other from '../components/resumeComponents/Other/Other';
+
+let theme = createMuiTheme(
+    {
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
+        palette: {
+            primary: {
+                light: '#757ce8',
+                main: '#002884',
+                dark: '#002884',
+                contrastText: '#fff',
+            }
+        },
+    }
+);
 theme = responsiveFontSizes(theme);
 const useStyles = makeStyles(() => ({
     root: {
-      flexGrow: 1,
-      marginTop: '67px',
-      textAlign: 'center',
-      backgroundColor: 'rgba(235, 235, 235)',
-      shadowColor: 'rgba(255, 255, 255)'
+        flexGrow: 1,
+        marginTop: '67px',
+        textAlign: 'center',
+        backgroundColor: 'rgba(235, 235, 235)',
+
     },
     header: {
-        padding: '20px'
+        padding: '20px',
+        backgroundColor: 'white'
     },
     title: {
         paddingLeft: '20px',
-        paddingTop: '20px',
-        textAlign: 'left'
+        marginTop: '30px',
+        textAlign: 'left',
+        marginBottom: '30px'
     }
 }));
 
-const FilipCV = () => {
+const FilipResume = () => {
     const classes = useStyles();
-    const [x,setX] = useState();
     const history = useHistory();
     const skillref = useRef(null);
     const projectref = useRef(null);
-    var skillPos,projectPos;
-    useEffect(() =>{
-        const handleScroll = (event) => {
-            // let scrollTop = window.offset().top;
-            if (window.pageYOffset < 500) {
-                history.push('/filipresume')
-            } else if (window.pageYOffset>500 && window.pageYOffset<1600){
-                history.push('/skills')
-            } else if (window.pageYOffset > 1600){
-                history.push('/projects')
-            }
+    const educationref = useRef(null);
+    const coursesref = useRef(null);
+    const workref = useRef(null);
+    const personalskillref = useRef(null);
+    const otherref = useRef(null);
+
+    const handleScroll = (event) => {
+        const skillPos = skillref ? skillref.current.getBoundingClientRect().top : 0;
+        const projectsPos = projectref ? projectref.current.getBoundingClientRect().top : 0;
+        const educationPos = educationref ? educationref.current.getBoundingClientRect().top : 0;
+        const coursesPos = coursesref ? coursesref.current.getBoundingClientRect().top : 0;
+        const workPos = workref ? workref.current.getBoundingClientRect().top : 0;
+        const personalskillPos = personalskillref ? personalskillref.current.getBoundingClientRect().top : 0;
+        const otherPos = otherref ? otherref.current.getBoundingClientRect().top : 0;
+        if (skillPos <= 70 && projectsPos > 70) {
+            history.push('/skills')
+        } else if (projectsPos <= 70 && educationPos > 70) {
+            history.push('/projects')
+        } else if (educationPos <= 70 && coursesPos > 70) {
+            history.push('/education')
+        } else if (coursesPos <= 70 && workPos > 70) {
+            history.push('/courses')
+        } else if (workPos <= 70 && personalskillPos > 70) {
+            history.push('/workexperience')
+        } else if (personalskillPos <= 70 && otherPos > 70) {
+            history.push('/personalskills')
+        } else if (otherPos <= 70) {
+            history.push('/other')
+        } else {
+            history.push('/filipresume')
         }
+    }
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return function cleanup() {
             window.removeEventListener('scroll', handleScroll);
-          }
+        }
     });
-    // useLayoutEffect(() => {
-    //     function updatePosition() {
-    //     skillPos = skillref.current.getBoundingClientRect().top;
-    //     projectPos = projectref.current.getBoundingClientRect().top;
-    //     console.log(skillPos)
-    //     console.log(projectPos)
-    //     }
-    //     window.addEventListener('resize', updatePosition);
-    //     updatePosition();
-    //     return () => window.removeEventListener('resize', updatePosition);
-    //   }, []);
     return (
         <ThemeProvider theme={theme}>
-        <Grid container className={classes.root}>
-            <Grid item>
-                <Typography variant="h3" className={classes.header} color="textSecondary">
-                    Filip Babić | Software Developer {x}
-                </Typography>
-                <Divider />
-                <Typography variant="h4" color="primary" className={classes.title}>
-                Contact Info
-                </Typography>
-                <ContactInfo />
-                <Typography ref={skillref} variant="h4" color="primary" className={classes.title}>
-                Professional Skills
-                </Typography>
-                <Skills />
-                <Typography ref={projectref} variant="h4" color="primary" className={classes.title}>
-                Projects
-                </Typography>
-                <Projects />
-                <Typography  variant="h4" color="primary" className={classes.title}>
-                Education
-                </Typography>
-                <Education />
-                <Typography variant="h4" color="primary" className={classes.title}>
-                Courses
-                </Typography>
-                <Courses />
+            <Grid container className={classes.root}>
+                <Grid item>
+                    <Typography variant="h3" className={classes.header} color="textSecondary">
+                        Filip Babić | Software Developer
+                    </Typography>
+                    <Divider />
+                    <Typography variant="h4" color="primary" className={classes.title}>
+                        Contact Info
+                    </Typography>
+                    <ContactInfo />
+                    <Typography ref={skillref} variant="h4" color="primary" className={classes.title}>
+                        Professional Skills
+                    </Typography>
+                    <Skills />
+                    <Typography ref={projectref} variant="h4" color="primary" className={classes.title}>
+                        Projects
+                    </Typography>
+                    <Projects />
+                    <Typography ref={educationref} variant="h4" color="primary" className={classes.title}>
+                        Education
+                    </Typography>
+                    <Education />
+                    <Typography ref={coursesref} variant="h4" color="primary" className={classes.title}>
+                        Courses
+                    </Typography>
+                    <Courses />
+                    <Typography ref={workref} variant="h4" color="primary" className={classes.title}>
+                        Work Experience
+                    </Typography>
+                    <Jobs />
+                    <Typography ref={personalskillref} variant="h4" color="primary" className={classes.title}>
+                        Personal Skills
+                    </Typography>
+                    <PersonalSkills />
+                    <Typography ref={otherref} variant="h4" color="primary" className={classes.title}>
+                        Other
+                    </Typography>
+                    <Other />
+                </Grid>
             </Grid>
-        </Grid>
         </ThemeProvider>
-        )
-    }
+    )
+}
 
-export default FilipCV;
+export default FilipResume;
