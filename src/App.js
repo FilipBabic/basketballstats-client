@@ -6,16 +6,20 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //PAGES
 import Home from './pages/home';
 import Login from './pages/login';
-import Signup from './pages/signup';
+// import Signup from './pages/signup';
 import Dashboard from './pages/dashboard';
 import EditProfile from './pages/editprofile';
 import LeagueStats from './pages/leaguestats';
 import FilipResume from './pages/filipresume';
 import LeaguePreview from './pages/leaguepreview';
+import TeamPreview from './pages/teampreview';
 //COMPONENTS
 import Navbar from './components/Navbar';
+import ResumeNavbar from './components/resumeComponents/Navbar/ResumeNavbar'
 import AuthRoute from './customRoutes/AuthRoute';
-import ResumeAuthRoute from './customRoutes/ResumeAuthRoute';
+import ArrangeGame from './components/basketballComponents/ArrangeGame/ArrangeGame';
+import PlayGame from './components/basketballComponents/PlayGame/PlayGame';
+//import ResumeAuthRoute from './customRoutes/ResumeAuthRoute';
 
 
 const AppNavbarRoute = ({ exact, path, component: Component, ...rest }) => {
@@ -24,10 +28,12 @@ const AppNavbarRoute = ({ exact, path, component: Component, ...rest }) => {
   }}
   />
 }
-// PROJEKTE, SKILLS, WORK EXPERIENCE UPDEJTOVATI 
-// LIKE, ULIKE CV DODATI
-// DASHBOARD DODATI OSNOVNE FUNKCIJE
-
+const AppNavbarRoute2 = ({ exact, path, component: Component, ...rest }) => {
+  return <Route exact={exact} path={path} {...rest} render={(routeProps) => {
+    return <><ResumeNavbar {...routeProps} /><Component {...routeProps} /></>
+  }}
+  />
+}
 const App = () => {
   return (
     <BrowserRouter>
@@ -36,16 +42,21 @@ const App = () => {
           <UserProvider>
             <AppNavbarRoute exact path="/" component={Home} />
             <AppNavbarRoute path="/login" component={Login} />
-            <AppNavbarRoute path="/signup" component={Signup} />
+            {/* <AppNavbarRoute path="/signup" component={Signup} /> */}
             <AuthRoute
               path="/dashboard"
               component={Dashboard}
             />
             <AuthRoute
+              path="/arrangegame"
+              component={ArrangeGame}
+            />
+            <AuthRoute path="/utakmica/:gameID/:firstID/:secondID" component={PlayGame} />
+            <AuthRoute
               path="/editprofile"
               component={EditProfile}
             />
-            <ResumeAuthRoute
+            <AppNavbarRoute2
               path={[
                 "/filipresume",
                 "/skills",
@@ -59,7 +70,8 @@ const App = () => {
               component={FilipResume}
             />
             <AppNavbarRoute path="/leaguestats" component={LeagueStats} />
-            <AppNavbarRoute path="/leagues/:leagueID" component={LeaguePreview} />
+            <AppNavbarRoute path="/league/:leagueID" component={LeaguePreview} />
+            <AppNavbarRoute path="/team/:teamID" component={TeamPreview} />
           </UserProvider>
         </AuthProvider>
       </Switch>

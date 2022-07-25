@@ -5,7 +5,7 @@ import {
     Typography
 } from '@material-ui/core';
 import useStyles from './styles';
-const Job = ({ job: { company, period, position, description } }) => {
+const Job = ({ job: { company, companyDescription, period, position, description } }) => {
     const classes = useStyles();
     return (
         <Grid item className={classes.root} xs={12} xl={12} sm={4} md={3}>
@@ -14,13 +14,16 @@ const Job = ({ job: { company, period, position, description } }) => {
                     <Typography variant="h5" color="primary" className={classes.company}>
                         {company}
                     </Typography>
+                    <Typography variant="subtitle2" color="textSecondary" className={classes.companyDescription}>
+                        {companyDescription}
+                    </Typography>
                     <Typography variant="subtitle1" className={classes.position} component={'span'} align="right">
                         {position}
                     </Typography>
-                    <Typography gutterBottom variant="body2" color="textSecondary" className={classes.description}>
+                    <Typography gutterBottom variant="body2" className={classes.description}>
                         {description}
                     </Typography>
-                    <Typography variant="subtitle2" color="secondary">
+                    <Typography variant="subtitle2" color="textSecondary">
                         {period}
                     </Typography>
                 </CardContent>

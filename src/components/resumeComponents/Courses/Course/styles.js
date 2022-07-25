@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        margin: '20px auto 0 auto',
         textAlign: 'center'
     },
     name: {
@@ -11,19 +10,14 @@ export default makeStyles((theme) => ({
         color: '#002884'
     },
     card: {
-        maxWidth: '400px',
-        margin: '10px',
         textAlign: 'center',
         borderRadius: '20px'
     },
     content: {
-        padding: '15px',
         textDecoration: 'none'
     },
-    media: {
-        margin: '10px auto 10px auto',
-        height: 240,
-        width: 240
+    period: {
+        marginTop: '10%'
     },
     technology: {
         color: '#4aedc4'

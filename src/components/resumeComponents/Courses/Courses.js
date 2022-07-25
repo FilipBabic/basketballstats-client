@@ -9,7 +9,7 @@ const Courses = () => {
             "name": "React Native internship",
             "period": "Aug 2020 - Dec 2020",
             "source": "https://freecords.com/",
-            "description": "Freecords - streaming platform focused on music discovery and the showcasing of new and emerging artists."
+            "description": "Freecords - streaming platform focused on music discovery"
         },
         {
             "name": "Swift programming course",
@@ -34,7 +34,7 @@ const Courses = () => {
             "period": "Nov 2014",
             "source": "https://www.link-elearning.com/kurs-Advanced-PHP-programming---Building-Web-Applications_374_4",
             "description": "LINK group"
-        }
+        },
     ]);
     let coursesMarkup = (
         <>
@@ -43,7 +43,11 @@ const Courses = () => {
             }
         </>)
     return (
-        <Grid container className={classes.root}>
+        <Grid container
+            spacing={2}
+            direction="row"
+            justify="center"
+            className={classes.root}>
             {
                 coursesMarkup
             }

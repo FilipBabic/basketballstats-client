@@ -32,13 +32,13 @@ const TableHeader = () => {
     const classes = useStyles();
     return (
         <List className={classes.list}>
-            <ListItem style={{ textAlign: 'center' }}>
+            <ListItem style={{ textAlign: 'center' }} key={1}>
                 <ListItemAvatar>
                     <Avatar style={{ backgroundColor: 'black', color: 'gold' }}>
                         <EmojiEventsIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <Grid item sm={4} xs={5}>
+                <Grid item sm={4} xs={4}>
                     <ListItemText primary={``} />
                 </Grid>
                 <Grid item sm={1} xs={1}>
@@ -50,20 +50,17 @@ const TableHeader = () => {
                 <Grid item sm={1} xs={1}>
                     <ListItemText secondary={`GL`} />
                 </Grid>
-                <Grid item sm={1} xs={1}>
-                    <ListItemText secondary={`P+`} />
-                </Grid>
-                <Grid item sm={1} xs={1}>
-                    <ListItemText secondary={`P-`} />
+                <Grid item sm={2} xs={2}>
+                    <ListItemText secondary={`P+/P-`} />
                 </Grid>
                 <Grid item sm={1} xs={1}>
                     <ListItemText secondary={`Dif`} />
                 </Grid>
-                <Grid item sm={2} xs={1}>
+                <Grid item sm={2} xs={2}>
                     <ListItemText primary={`Pts`} style={{ color: 'green' }} />
                 </Grid>
             </ListItem>
-            <Divider style={{ border: '2px solid' }} />
+            <Divider style={{ color: 'green', height: '0px', border: '2px solid' }} />
         </List>
     )
 }

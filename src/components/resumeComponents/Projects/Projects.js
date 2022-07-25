@@ -6,26 +6,26 @@ const Projects = () => {
     const classes = useStyles();
     const [projects] = useState([
         {
-            "name": "Basketball Stats client",
-            "development": "front-end",
+            "name": "Basketball Stats",
+            "development": "Web application",
             "website": "https://basketballstats.rs",
             "status": "in Progress",
             "github": "https://github.com/FilipBabic/basketballstats-client",
-            "description": "Client side of web application for gathering statistical data in a basketball game.",
-            "technologies": ["React JS", "JavaScript", "Visual Studio Code", "Firebase"]
+            "description": "This is a platform for managing basketball leagues. It present informations about games, teams and players. Some of them are upcoming games, league table, team and player statistics. Admins have the ability to schedule matches, as well as, manage software for recording events in the game. When the match is over, its statistics are added to the database by clicking on the button. Application then calculates the statistics and display it on the website.",
+            "technologies": ["Firebase", "Express", "React JS", "Node JS", "Material-UI"]
         },
         {
-            "name": "Basketball Stats functions",
-            "development": "back-end",
-            "website": "https://basketballstats.rs",
-            "status": "in Progress",
-            "github": "https://github.com/FilipBabic/basketballstats-server",
-            "description": "Backend API, used for user authentication, creating, updating and deleting leagues, games, teams and players.",
-            "technologies": ["Node JS", "Firebase", "Visual Studio Code"]
+            "name": "Private Detective",
+            "development": "Website",
+            "website": "https://privatnidetektiv.rs",
+            "status": "deployed at October 2021",
+            "github": "https://github.com/FilipBabic/privatni-detektiv",
+            "description": "This website representing private investigator from Belgrade, with all goals, services and prices.",
+            "technologies": ["Bootstrap", "HTML 5", "Php"]
         },
         {
             "name": "Detektivska Agencija",
-            "development": "full-stack website",
+            "development": "Website",
             "website": "https://detektivskaagencija.rs",
             "status": "live from 2015",
             "github": "",
@@ -34,7 +34,7 @@ const Projects = () => {
         },
         {
             "name": "Freecords",
-            "development": "mobile",
+            "development": "Mobile application",
             "website": "",
             "status": "Intership Aug-Dec 2020",
             "github": "https://github.com/vinczebalazs/freecords-exchange-react-native/pull/30",
@@ -43,16 +43,25 @@ const Projects = () => {
         },
         {
             "name": "Filip iOS Task",
-            "development": "iOS development",
+            "development": "iOS application",
             "website": "",
-            "status": "Finished Sep 2020",
+            "status": "Finished at Sep 2020",
             "github": "https://github.com/FilipBabic/Filip-Task",
             "description": "A small iOS application made for the purpose of job interviews. It read tasks from and add notes to the Google Realtime Database. The design of the application is made from a figma prototype. To create a user interface I used a combination of a storyboard and dynamic approach.",
             "technologies": ["Swift", "XCode", "Firebase-Realtime Database"]
         },
         {
             "name": "Ez Dripper",
-            "development": "iOS development",
+            "development": "iOS application",
+            "website": "https://ezcloudcompany.com/products/ez-dripper",
+            "status": "Uploaded to the App Store at Sep 2016",
+            "github": "https://gitlab.com/crossover-core/ez-dripper",
+            "description": "iOS application for tracking e-juice in ez Dripper bottle",
+            "technologies": ["Swift", "XCode", "iTunnesConnect"]
+        },
+        {
+            "name": "Ez Dripper",
+            "development": "iOS application",
             "website": "https://ezcloudcompany.com/products/ez-dripper",
             "status": "Uploaded to the App Store at Sep 2016",
             "github": "https://gitlab.com/crossover-core/ez-dripper",

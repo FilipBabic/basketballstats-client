@@ -3,8 +3,6 @@ import {
     Grid,
     Card,
     CardContent,
-    CardActionArea,
-    CardActions,
     Link,
     Typography
 } from '@material-ui/core';
@@ -18,38 +16,34 @@ const Project = ({ project: { name, development, website, status, github, descri
         console.log(myWindow.screenX)
     }
     return (
-        <Grid item className={classes.root} xs={12} sm={6} md={4} lg={3} xl={3}>
+        <Grid item className={classes.root} xs={12} sm={6} md={4} lg={3} xl={2}>
             <Card className={classes.card}>
-                <CardActionArea>
-                    <CardActions>
-                        <CardContent className={classes.content}>
-                            <Typography variant="h5" color="primary" className={classes.name}>
-                                {name}
-                            </Typography>
-                            <Typography variant="subtitle2">technologies:</Typography>
-                            <Link component={RouterLink} onClick={clicked} to="/skills">
-                                <Typography variant="subtitle1" className={classes.technology} component={'span'}>
-                                    {`${technologies}`}
-                                </Typography>
-                            </Link>
-                            <Typography gutterBottom variant="body2" color="textSecondary" className={classes.description}>
-                                {description}
-                            </Typography>
-                            <Typography variant="body2" color="primary" className={classes.website}>
-                                <Link href={website}>{website ? `website: ${website}` : ""}</Link>
-                            </Typography>
-                            <Typography variant="body2" className={classes.github}>
-                                <Link href={github} color="textPrimary">{github ? `GITHUB: ${github}` : ""}</Link>
-                            </Typography>
-                            <Typography variant="body2" color="secondary" className={classes.status}>
-                                project status: {status}
-                            </Typography>
-                        </CardContent>
-                    </CardActions>
+                <CardContent className={classes.content}>
+                    <Typography variant="h5" color="primary" className={classes.name}>
+                        {name}
+                    </Typography>
+                    <Typography variant="subtitle2">technologies:</Typography>
+                    <Link component={RouterLink} onClick={clicked} to="/skills">
+                        <Typography variant="subtitle1" className={classes.technology} component={'span'}>
+                            {`${technologies}`}
+                        </Typography>
+                    </Link>
+                    <Typography gutterBottom variant="body2" color="textSecondary" className={classes.description}>
+                        {description}
+                    </Typography>
+                    <Typography variant="body2" color="primary" className={classes.website}>
+                        <Link href={website}>{website ? `website: ${website}` : ""}</Link>
+                    </Typography>
+                    <Typography variant="body2" className={classes.github}>
+                        <Link href={github} color="textPrimary">{github ? `GITHUB: ${github}` : ""}</Link>
+                    </Typography>
+                    <Typography variant="body2" color="secondary" className={classes.status}>
+                        project status: {status}
+                    </Typography>
                     <Typography variant="subtitle2" color="primary" className={classes.source}>
                         {development}
                     </Typography>
-                </CardActionArea>
+                </CardContent>
             </Card>
         </Grid>
     )

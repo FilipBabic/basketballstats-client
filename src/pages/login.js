@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from '../context/AuthContext';
 import { UserContext } from '../context/UserContext';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         marginTop: '80px',
+        padding: '0 30px 0 30px',
         textAlign: 'center'
     },
     image: { margin: '20px auto 20px auto' },
@@ -54,7 +55,7 @@ const Login = () => {
                     console.error(error)
                 })
                 setLoading(false);
-                history.push("/filipresume");
+                history.push("/dashboard");
             })
             .catch(err => {
                 setErrors(err.response.data);
@@ -67,9 +68,6 @@ const Login = () => {
             <Grid item sm />
             <Grid item sm>
                 <img src={Logo} alt="Basketball stats" className={classes.image} />
-                <Typography variant="h4" className={classes.title}>
-                    LOGIN
-                </Typography>
                 <form noValidate onSubmit={handleSubmit}>
                     <TextField id="email"
                         name="email"
@@ -105,10 +103,8 @@ const Login = () => {
                         className={classes.button}
                         disabled={loading}>
                         {loading && (<CircularProgress size={30} className={classes.progress} />)}
-                        Login
+                        Prijavi se
                     </Button>
-                    <br />
-                    <small>dont have an account? sign up <Link to="/signup">here</Link></small>
                 </form>
             </Grid>
             <Grid item sm />

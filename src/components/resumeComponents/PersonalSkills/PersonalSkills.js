@@ -21,7 +21,7 @@ const PersonalSkills = () => {
             "name": "Time management"
         },
         {
-            "name": "Problems Solving"
+            "name": "Problem Solving"
         }
     ]);
     let personalSkillsMarkup = (

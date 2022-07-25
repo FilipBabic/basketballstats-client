@@ -6,7 +6,6 @@ import {
     Card,
     CardContent,
     CardActionArea,
-    CardActions,
     CardMedia,
     Button,
     Typography
@@ -14,22 +13,25 @@ import {
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import logoImage from '../../../../images/icon.png';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import Info from '@material-ui/icons/Info';
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-        margin: '80px auto 0 auto'
+        flexGrow: 1
     },
     title: {
-        padding: '20px'
+        padding: '5px',
+        textAlign: 'center',
+        color: '#15996b'
     },
     card: {
-        maxWidth: 350,
-        margin: '10px auto 10px auto',
+        maxWidth: '350px',
+        height: 'auto',
+        margin: '0 auto 0 auto',
+        borderRadius: '25px'
     },
     content: {
-        padding: '25px',
+        marginTop: '0px',
+        height: 'auto',
         textDecoration: 'none'
     },
     media: {
@@ -39,8 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
     createdAt: {
         color: '#4aedc4',
-        textAlign: 'right',
-        paddingRight: '30px'
+        textAlign: 'center'
     },
     bio: {
         padding: '20px',
@@ -49,12 +50,11 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '0',
     },
     rightButton: {
-        marginLeft: '40%',
         textAlign: 'center'
     }
 }));
 
-const League = ({ league: { leagueName, userHandle, createdAt } }) => {
+const League = ({ league: { leagueName, userHandle, createdAt, logoUrl } }) => {
     const classes = useStyles();
     const [hover, setHover] = useState(false);
     const onHover = () => {
@@ -76,51 +76,45 @@ const League = ({ league: { leagueName, userHandle, createdAt } }) => {
             hh: "%d sati",
             d: "jednog dana",
             dd: "%d dana",
-            M: "mesec",
-            MM: "%d meseci",
+            M: "mesec dana",
+            MM: "%d meseca",
             y: "godinu dana",
             yy: "%d godine"
         }
     })
     dayjs.extend(relativeTime);
     return (
-        <Grid item className={classes.root} xs={12} sm={4}>
+        <Grid item className={classes.root} xs={12} sm={4} md={3} lg={2}>
             <Card className={classes.card}>
-                <CardActionArea component={Link} to={`/leagues/${leagueID}`}>
-
+                <CardActionArea component={Link} to={`/league/${leagueID}`}>
                     <CardContent className={classes.content}>
-                        <Typography variant="h5" color="primary" className={classes.title}>
+                        <Typography variant="h6" color="primary" className={classes.title}>
                             {leagueName}
                         </Typography>
                         <CardMedia
                             className={classes.media}
-                            image={logoImage}
+                            image={logoUrl}
                             title={leagueName}
                         />
-                        <Typography gutterBottom variant="body2" color="textSecondary" className={classes.bio}>
+                        <Typography gutterBottom variant="body2" align="center" color="textSecondary" className={classes.bio}>
                             Amaterska Liga iz Beograda
                         </Typography>
-                        <Typography variant="subtitle1" className={classes.createdAt}>
-                            napravio <div><Typography variant="h4" color="primary">
-                                {userHandle}
-                            </Typography>
-                            </div> {dayjs(createdAt).fromNow()}
-                        </Typography>
+                        <Button
+                            size="small"
+                            color="primary"
+                            onMouseEnter={onHover}
+                            onMouseLeave={onLeave}
+                            className={classes.rightButton}>
+                            <Info size="large" />
+                            {hover ? (<Typography variant="subtitle1" className={classes.createdAt}>
+                                napravio <div><Typography variant="h4" color="primary">
+                                    {userHandle}
+                                </Typography>
+                                </div> {dayjs(createdAt).fromNow()}
+                            </Typography>) : ""}
+                        </Button>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button
-                        size="small"
-                        color="primary"
-                        onMouseEnter={onHover}
-                        onMouseLeave={onLeave}
-                        className={classes.rightButton}>
-                        <FavoriteIcon size="large" />
-                        {hover ? (<Typography variant="caption">
-                            Trenutno ne možete lajkovati ligu
-                        </Typography>) : ""}
-                    </Button>
-                </CardActions>
             </Card>
         </Grid>
     )

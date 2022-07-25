@@ -7,13 +7,14 @@ export default makeStyles((theme) => ({
         marginTop: '10px',
         backgroundColor: 'rgba(235, 235, 235)'
     },
-    list: {
-        backgroundColor: 'rgba(235, 235, 235)'
+    top: {
+        marginTop: '20px',
     },
     image: {
-        height: '240px',
-        width: '240px',
+        height: '80px',
+        width: '80px',
+        margin: '10px auto 10px auto',
         alignContent: 'center',
-        margin: '10px auto 0 auto',
+        borderRadius: '15px'
     }
 }));

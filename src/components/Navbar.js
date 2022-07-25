@@ -4,7 +4,6 @@ import { AuthContext } from '../context/AuthContext';
 import { UserContext } from '../context/UserContext';
 import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button, IconButton, Typography, ThemeProvider } from '@material-ui/core';
-import HomeRounded from '@material-ui/icons/HomeRounded';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
@@ -13,7 +12,7 @@ let theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#002884',
+      main: '#000',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -29,9 +28,6 @@ theme = responsiveFontSizes(theme);
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-  },
-  homeButton: {
-    margin: '0 auto 0 0'
   },
   signupButton: {
     marginLeft: '2px',
@@ -68,10 +64,10 @@ const Navbar = () => {
             className={classes.homeButton}
             color="inherit"
             aria-label="menu">
-            <SportsBasketballIcon fontSize="large" />
+            <img src="https://cargoliga.rs/wp-content/uploads/2021/09/cargo-liga-logo.webp" height="50" width="60" alt="Car:go liga logo" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Basketball Stats
+            Car:Go liga
           </Typography>
           {isAuthenticated ? (
             <>
@@ -104,20 +100,20 @@ const Navbar = () => {
                 color="inherit"
                 aria-label="menu"
               >
-                <HomeRounded fontSize="large" />
+                <SportsBasketballIcon fontSize="large" />
               </IconButton>
               <Button
                 color="inherit"
                 component={Link}
                 to="/login"
                 className={classes.loginButton}
-              >Login</Button>
-              <Button
+              >Prijavite se</Button>
+              {/* <Button
                 color="inherit"
                 component={Link}
                 to="/signup"
                 className={classes.signupButton}
-              >Signup</Button>
+              >Signup</Button> */}
             </>)}
         </Toolbar>
       </AppBar>

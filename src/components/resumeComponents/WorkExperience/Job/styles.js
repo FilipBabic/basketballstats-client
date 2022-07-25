@@ -2,24 +2,27 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        margin: '20px auto 10 auto',
         textAlign: 'center'
     },
     card: {
-        maxWidth: '400px',
-        margin: '10px',
+        width: 'auto',
+        margin: '5px',
         alignContent: 'center',
-        borderRadius: '20px'
+        borderRadius: '20px',
+        height: '220px'
     },
     content: {
         padding: '15px',
         textDecoration: 'none'
     },
     company: {
-        padding: '20px'
+        paddingTop: '10px'
+    },
+    companyDescription: {
+        paddingBottom: '15px'
     },
     position: {
-        color: '#4aedc4'
+        color: '#15996b'
     },
     description: {
         textAlign: 'center'
