@@ -12,13 +12,13 @@ const Jobs = () => {
             "description": "Developing websites (HTML5, Bootsrap, Javascript, PHP, MySQL), Search engine optimization",
             "companyDescription": "Detective agency"
         },
-        {
+        /*{
             "company": "Apptertainment",
             "period": "December 2018 - June 2021",
             "position": "Web developer",
             "description": "Developing web applications (HTML5, Bootstrap, Javascript, Php, React JS, Redux)",
             "companyDescription": "Software developing company"
-        },
+        },*/
         {
             "company": "Digital Share",
             "period": "November 2016 - December 2017",
